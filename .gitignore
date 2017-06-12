@@ -1,0 +1,5 @@
+node_modules
+message.txt
+
+# ignore packages generated
+hello-electron-darwin-x64

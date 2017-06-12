@@ -231,16 +231,62 @@ git提交日志：``c5-callnode``
 
 看完这个图，让人觉得非常类似微信的``小程序``：提供了一个``Runtime``，给第三方开发者，第三方开发者可以用类似JavaScript的语言来操作手机硬件资源和微信用户信息，因为微信这个母体把手机操作系统层的差异都屏蔽，并抽象出API了。
 
+
+## 打包发布
+
+### 安装打包工具
+
+``` bash
+# for use from cli
+npm install electron-packager -g
+
+# for use in npm scripts
+npm install electron-packager --save-dev
+
+```
+
+第二句（``npm install electron-packager --save-dev``）执行完，会在``package.json``下自动添加：
+
+``` json
+"devDependencies": {
+  "electron-packager": "^8.7.1"
+}
+```
+
+### 执行打包任务
+
+``` bash
+electron-packager <sourcedir> <appname> --platform=<platform> --arch=<arch> [optional flags...]
+```
+
+最简单的，直接执行：
+
+``` bash
+$ electron-packager .
+```
+
+生成的安装包结构：
+
+``` bash
+$ tree hello-electron-darwin-x64 -L 1
+hello-electron-darwin-x64
+├── LICENSE
+├── LICENSES.chromium.html
+├── hello-electron.app   // Mac 程序
+└── version
+```
+
 ---
 
 # 附录-1： git 提交历史
 
 ``` bash
-commit b6f9befb7ac67c5    c5-callnode
-commit be3f65bce233fd     c4-interaction
-commit 230a72cac9104364   c3-main.js
-commit b730d4a1c605f6     c2-server.js
 commit ebe00af32992041    c1-index.html
+commit b730d4a1c605f6     c2-server.js
+commit 230a72cac9104364   c3-main.js
+commit be3f65bce233fd     c4-interaction
+commit b6f9befb7ac67c5    c5-callnode
+commit 25093f4ba4ccd13    c6-electron-summary
 ```
 
 如果想看 ``c3-main.js`` 提交点的代码，请执行：
@@ -258,3 +304,7 @@ $ git checkout 230a72cac9104364
 - [用electron写的扬声器应用](http://get.ftqq.com/7870.get)
 
 - [electron本质](https://segmentfault.com/a/1190000007503495)
+
+- [electron-packager-tutorial](https://www.christianengvall.se/electron-packager-tutorial/)
+
+- [electron-develop-practice](https://sneezry.com/2016/01/05/electron-develop-practice-part2/)
