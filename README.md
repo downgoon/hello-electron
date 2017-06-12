@@ -130,10 +130,56 @@ $ npm start
 
 或者 ``electron .`` 也可以。
 
+![](assets/markdown-img-paste-2017061217281508.png)
+
 代码提交日志：``c3-main.js``
+
+
+## 网页交互
+
+接着丰富下``index.html``，在页面上弄个输入框和按钮。用``CSS``样式渲染下输入框；并用``javascript``响应按钮点击事件。
+
+- 按钮响应动作
+
+``` html
+<body>
+  <h1>Hello World!</h1>
+  <textarea rows="10"></textarea>
+  <button onclick="alert('you click write');">Write</button>
+</body>
+```
+
+- 输入框渲染
+
+``` html
+<head>
+  <style type="text/css">
+  body {
+    margin: 0;
+  }
+
+  textarea {
+    width: 100%;
+    border: none;
+    background: #eee;
+    margin: 10px 0;
+    padding: 0;
+    outline: none;
+  }
+  </style>
+</head>
+```
+
+- 运行效果
+
+![](assets/markdown-img-paste-20170612184937198.png)
+
+git提交日志：``c4-interaction``
 
 ---
 
 # 参考资料
 
 - [用node写简易的静态Web服务器](http://www.runoob.com/nodejs/nodejs-web-module.html)
+
+- [用electron写的扬声器应用](http://get.ftqq.com/7870.get)
