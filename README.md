@@ -2,6 +2,25 @@
 
 <!-- toc -->
 
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [hello-electron](#hello-electron)
+	- [index.html](#indexhtml)
+	- [server.js](#serverjs)
+	- [main.js](#mainjs)
+	- [网页交互](#网页交互)
+	- [调用node](#调用node)
+	- [electron 本质](#electron-本质)
+	- [打包发布](#打包发布)
+		- [安装打包工具](#安装打包工具)
+- [for use from cli](#for-use-from-cli)
+- [for use in npm scripts](#for-use-in-npm-scripts)
+		- [执行打包任务](#执行打包任务)
+- [附录-1： git 提交历史](#附录-1-git-提交历史)
+- [参考资料](#参考资料)
+
+<!-- /TOC -->
+
 ## index.html
 
 刚开始，只有一个 ``index.html``页面，显示``Hello World``：
