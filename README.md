@@ -223,6 +223,32 @@ myButton.onclick = writeFile;
 git提交日志：``c5-callnode``
 
 
+## electron 本质
+
+看到这 ``electron`` 似乎没有太多原创的东西，依赖的是``node.js``和``chromium``。官方的概括图是：
+
+![](assets/markdown-img-paste-20170612203435767.png)
+
+看完这个图，让人觉得非常类似微信的``小程序``：提供了一个``Runtime``，给第三方开发者，第三方开发者可以用类似JavaScript的语言来操作手机硬件资源和微信用户信息，因为微信这个母体把手机操作系统层的差异都屏蔽，并抽象出API了。
+
+---
+
+# 附录-1： git 提交历史
+
+``` bash
+commit b6f9befb7ac67c5    c5-callnode
+commit be3f65bce233fd     c4-interaction
+commit 230a72cac9104364   c3-main.js
+commit b730d4a1c605f6     c2-server.js
+commit ebe00af32992041    c1-index.html
+```
+
+如果想看 ``c3-main.js`` 提交点的代码，请执行：
+
+``` bash
+$ git checkout 230a72cac9104364
+```
+
 ---
 
 # 参考资料
@@ -230,3 +256,5 @@ git提交日志：``c5-callnode``
 - [用node写简易的静态Web服务器](http://www.runoob.com/nodejs/nodejs-web-module.html)
 
 - [用electron写的扬声器应用](http://get.ftqq.com/7870.get)
+
+- [electron本质](https://segmentfault.com/a/1190000007503495)
