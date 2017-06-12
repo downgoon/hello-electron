@@ -176,6 +176,53 @@ $ npm start
 
 git提交日志：``c4-interaction``
 
+
+## 调用node
+
+刚才演示的跟传统网页没任何区别，依然是纯前端技术（指基于浏览器的）。但是``electron``是桌面程序，它的特别之处在于：在``.html``网页中，可以直接引用``node.js``，相当于直接从前端跨入了后端，而且无需网络通信。
+
+- renderer.js
+
+``` javascript
+
+var fs = require('fs');
+
+var myTextarea = document.getElementsByTagName('textarea')[0];
+var myButton = document.getElementsByTagName('button')[0];
+
+// get input from textarea and write it into message.txt
+
+function writeFile() {
+  var text = myTextarea.value;
+  fs.writeFileSync('message.txt',
+  text, 'utf8');
+}
+
+myButton.onclick = writeFile;
+
+```
+
+这段javascript是node，但是它却可以访问网页的DOM对象，这就是``electron``的神奇之处。
+
+- 引用js
+
+在``index.html``中，引用JS：
+
+``` html
+<body>
+  <h1>Hello World!</h1>
+  <textarea rows="10"></textarea>
+  <button>Write</button>
+</body>
+
+<script>
+   require('./renderer.js')
+</script>
+```
+
+git提交日志：``c5-callnode``
+
+
 ---
 
 # 参考资料
