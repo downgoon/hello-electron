@@ -55,6 +55,83 @@ server running at http://127.0.0.1:8080/
 request comming: /index.html
 ```
 
+上述代码提交日志是：``c2-server.js``。
+
+## main.js
+
+基于node的B/S结构，并不是我们的目标。我们期望用``electron``来加载``index.html``，而无需网络通信，我们要构建桌面程序。
+
+``` javascript
+var electron = require('electron');
+
+electron.app.on('ready', function createWindow () {
+
+  new electron.BrowserWindow(
+      {width: 800, height: 600}
+    ).loadURL('file://' + __dirname + "/index.html")
+
+} );
+```
+
+上述``main.js``代码，不再需要用户在浏览器上输入URL，而是主动加载URL：
+
+>``.loadURL('file://' + __dirname + "/index.html")``
+
+这个``loadURL``的能力，是``electron``模块的，因此开头``var electron = require('electron');``。
+
+``electron``有两个重要对象：
+- ``app``: 管理应用程序的声明周期。代码``app.on('ready', function () {})``表示当应用初始化完毕后，创建一个窗口。
+- ``BrowserWindow``: 浏览器窗口对象。可以用 ``new electron.BrowserWindow()`` 的方式创建一个窗口，并``loadURL``一个html页面。
+
+组成结构和加载过程如下图所示：
+
+![](assets/electron.png)
+
+直接运行``node main.js``会报错，找不到``electron``模块，原因是它不是node的内置模块，我们借助``npm``包管理器来运行。
+
+``` bash
+$ node main.js
+
+Error: Cannot find module 'electron'
+    at Function.Module._resolveFilename (module.js:325:15)
+    at Function.Module._load (module.js:276:25)
+```
+
+>``npm``之于``node.js``，犹如``maven``之于``java``。``maven``用``pom.xml``描述依赖关系；而``npm``用``package.json``描述依赖关系。
+
+``package.json``内容：
+
+``` json
+{
+  "name": "hello-electron",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "HelloWorld electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "~1.6.2"
+  }
+}
+```
+
+上面主要描述了3个信息：
+
+- **meta**: 关于项目本身的描述，比如``name``，``version``等。
+- **入口**：程序的入口是``main.js``，需要用``electron .``来启动。这里的``electron``是``npm``的全局模块，可提前安装``npm install -g electron`` （一定要以``-g``选项安装）。
+- **依赖**：描述项目依赖``electron-1.6.2``版本。
+
+完后，在项目根目录下直接运行：
+
+``` bash
+$ npm start
+```
+
+或者 ``electron .`` 也可以。
+
+代码提交日志：``c3-main.js``
+
 ---
 
 # 参考资料

@@ -1,0 +1,12 @@
+{
+  "name": "hello-electron",
+  "version": "0.0.1-SNAPSHOT",
+  "description": "HelloWorld electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "~1.6.2"
+  }
+}
