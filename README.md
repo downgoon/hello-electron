@@ -13,8 +13,6 @@
 	- [electron 本质](#electron-本质)
 	- [打包发布](#打包发布)
 		- [安装打包工具](#安装打包工具)
-- [for use from cli](#for-use-from-cli)
-- [for use in npm scripts](#for-use-in-npm-scripts)
 		- [执行打包任务](#执行打包任务)
 - [附录-1： git 提交历史](#附录-1-git-提交历史)
 - [参考资料](#参考资料)
@@ -258,10 +256,9 @@ git提交日志：``c5-callnode``
 ### 安装打包工具
 
 ``` bash
-# for use from cli
+
 npm install electron-packager -g
 
-# for use in npm scripts
 npm install electron-packager --save-dev
 
 ```
