@@ -1,5 +1,7 @@
 # hello-electron
 
+<!-- toc -->
+
 ## index.html
 
 刚开始，只有一个 ``index.html``页面，显示``Hello World``：
@@ -298,6 +300,8 @@ $ git checkout 230a72cac9104364
 ---
 
 # 参考资料
+
+- [官方 electron-quick-start](https://github.com/electron/electron-quick-start
 
 - [用node写简易的静态Web服务器](http://www.runoob.com/nodejs/nodejs-web-module.html)
 
