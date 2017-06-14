@@ -294,6 +294,35 @@ hello-electron-darwin-x64
 └── version
 ```
 
+## jquery-electron
+
+通常在前端使用jquery的时候，这么引用：
+
+``` javascript
+<script src="js/jquery.js">
+</script>
+```
+
+但是，这样不能在``electron``里面工作，详情请见 [issues-1](https://github.com/downgoon/hello-electron/issues/1)。
+
+网友有人提出了一个引用方式，它能同时让 ``jquery`` 在浏览器里面和``electron``里面工作，方式如下：
+
+``` javascript
+
+<!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+<!-- normal script imports etc  -->
+<script src="js/jquery.js">
+</script>
+
+<!-- Insert this line after script imports -->
+<script>if (window.module) module = window.module;</script>
+
+```
+
+详细见 [jquery-electron-demo.html](jquery-electron-demo.html) 页面。
+
 ---
 
 # 附录-1： git 提交历史
