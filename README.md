@@ -17,6 +17,7 @@
 	- [打包发布](#打包发布)
 		- [安装打包工具](#安装打包工具)
 		- [执行打包任务](#执行打包任务)
+		- [多平台打包](#多平台打包)
 	- [jquery-electron](#jquery-electron)
 - [附录-1： git 提交历史](#附录-1-git-提交历史)
 - [参考资料](#参考资料)
@@ -299,20 +300,21 @@ git提交日志：``c5-callnode``
 ### 安装打包工具
 
 ``` bash
-
+npm install electron --save-prod
 npm install electron-packager -g
-
-npm install electron-packager --save-dev
-
 ```
 
-第二句（``npm install electron-packager --save-dev``）执行完，会在``package.json``下自动添加：
+执行完，会在``package.json``下自动添加：
 
 ``` json
-"devDependencies": {
-  "electron-packager": "^8.7.1"
+"dependencies": {
+    "electron": "^1.6.11",
 }
 ```
+
+**npm安装指令详解**
+
+>详细了解``npm install``，请前往：[npm install](npm-install.md)
 
 ### 执行打包任务
 
@@ -434,7 +436,7 @@ $ git checkout 230a72cac9104364
 
 # 参考资料
 
-- [官方 electron-quick-start](https://github.com/electron/electron-quick-start
+- [官方 electron-quick-start](https://github.com/electron/electron-quick-start)
 
 - [用node写简易的静态Web服务器](http://www.runoob.com/nodejs/nodejs-web-module.html)
 
