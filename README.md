@@ -5,6 +5,9 @@
 <!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
 
 - [hello-electron](#hello-electron)
+	- [QuickStart](#quickstart)
+		- [start](#start)
+		- [package](#package)
 	- [index.html](#indexhtml)
 	- [server.js](#serverjs)
 	- [main.js](#mainjs)
@@ -14,10 +17,50 @@
 	- [打包发布](#打包发布)
 		- [安装打包工具](#安装打包工具)
 		- [执行打包任务](#执行打包任务)
+	- [jquery-electron](#jquery-electron)
 - [附录-1： git 提交历史](#附录-1-git-提交历史)
 - [参考资料](#参考资料)
 
 <!-- /TOC -->
+
+
+## QuickStart
+
+### start
+
+```
+$ git clone https://github.com/downgoon/hello-electron.git
+$ cd hello-electron
+$ npm start
+```
+
+### package
+
+直接运行：
+
+``` bash
+$ electron-packager . --overwrite --out=target  --icon=img/hello
+```
+
+如果每次写那么多参数，嫌麻烦，也可以：
+
+``` bash
+$ npm run-script package
+```
+
+原因是命令参数提前配置到``package.json``里面了：
+
+>
+``` json
+"scripts": {
+	"start": "electron .",
+	"package": "electron-packager . --overwrite --out=target  --icon=img/hello"
+},
+```
+
+其中``package``字段是自定义命令（``start``命令是``npm``的自有命令）。
+
+在``Mac``下生成的可执行文件：``target/helloworld-electron-darwin-x64/helloworld-electron.app``
 
 ## index.html
 
@@ -286,13 +329,35 @@ $ electron-packager .
 生成的安装包结构：
 
 ``` bash
-$ tree hello-electron-darwin-x64 -L 1
-hello-electron-darwin-x64
+$ tree helloworld-electron-darwin-x64 -L 1
+helloworld-electron-darwin-x64
 ├── LICENSE
 ├── LICENSES.chromium.html
-├── hello-electron.app   // Mac 程序
+├── helloworld-electron.app   // Mac 程序
 └── version
 ```
+
+**参数解释**
+
+- ``sourcedir``： 源文件目录，属必选参数。表示需要把哪些东西打包。通常可以是项目的根目录，或者如果把源文件都放``app``子目录的话，那就是``app``子目录。
+
+- ``appname``: 应用程序名称，也就是打包后，可执行文件的文件名。它实际是一个可选参数，如果为空，则会取``package.json``里的``productName``或``name``字段（前者优先，以便开发时内部叫``name``，但是发布时外部叫``productName``）。
+
+- ``发布平台``：``electron``是跨平台的，可以打包到``Mac``，``Windows``和``Linux``三个主流平台。可通过参数``--platform=<platform>``和``--arch=<arch>``来指定。通常有三种组合：
+	- **当前平台**：如果不指定``--platform``和``--arch``，打包时，会默认生成当前平台的包（比如打包命令在``Mac``下运行，那就生成``Mac``平台的）。
+	- **所有平台**: 如果参数为``--all``，打包时，会生成3套平台。
+	- **特定平台**：如果``--platform=darwin --arch=x64``，则表示``Mac``平台64位机；如果``--platform=win32 --arch=x64``，则表示``Win``。
+- **常见Flags**：除了上面3个参数外，还有一些可选标志
+	- ``--overwrite``： 表示覆盖。如果没这个参数，打包过一遍的，再打包会提示已经打包了；如果有这个参数，就会直接覆盖过去的打包。
+	- ``--icon=./img/hello``： 应用程序图标。注意：**图标的后缀名不用写**，因为它是跨平台的，在windows下，会取``hello.ico``；在Mac下会取``hello.icns``；如果写死了``.icns``，则在Windows平台，由于文件格式不对，会被忽略。
+	- ``--out ./target``： 指定打包的生成目录，默认是当前目录。
+
+
+**平台有哪些？**
+
+>- ``--platform``: linux, win32, darwin, mas, all
+> - ``--arch``: ia32, x64, armv7l, all
+
 
 ## jquery-electron
 
@@ -357,3 +422,5 @@ $ git checkout 230a72cac9104364
 - [electron-packager-tutorial](https://www.christianengvall.se/electron-packager-tutorial/)
 
 - [electron-develop-practice](https://sneezry.com/2016/01/05/electron-develop-practice-part2/)
+
+- [electron-packager API](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md)

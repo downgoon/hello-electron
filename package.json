@@ -1,10 +1,12 @@
 {
   "name": "hello-electron",
-  "version": "0.0.1-SNAPSHOT",
+  "productName": "helloworld-electron",
+  "version": "0.1.0",
   "description": "HelloWorld electron",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "package": "electron-packager . --overwrite --out=target  --icon=img/hello"
   },
   "devDependencies": {
     "electron": "~1.6.2",
