@@ -358,6 +358,29 @@ helloworld-electron-darwin-x64
 >- ``--platform``: linux, win32, darwin, mas, all
 > - ``--arch``: ia32, x64, armv7l, all
 
+### 多平台打包
+
+除了上文的依据当前平台，自动决策打包外，还可以显示指定打包特定平台，比如我们可以在``package.json``中配置：
+
+``` json
+"scripts": {
+	"start": "electron .",
+	"package": "electron-packager . --overwrite --out=target  --icon=img/hello",
+	"package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --out=target  --icon=img/hello.icns",
+	"package-win": "electron-packager . --overwrite --platform=win32 --arch=ia32 --out=target  --icon=img/hello.ico",
+	"package-linux": "electron-packager . --overwrite --platform=linux --arch=x64 --out=target  --icon=img/hello.png"
+},
+```
+
+然后运行：
+
+``` bash
+$ npm run package-linux   // 打包Linux
+$ npm run package-win   // 打包Windows
+$ npm run package-mac		// 打包Mac
+```
+
+顺便提一下，指定特定平台时，icon图片，可以跟平台相关，后缀分别是：``.ico``，``.png``和``.icns``。
 
 ## jquery-electron
 
@@ -424,3 +447,5 @@ $ git checkout 230a72cac9104364
 - [electron-develop-practice](https://sneezry.com/2016/01/05/electron-develop-practice-part2/)
 
 - [electron-packager API](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md)
+
+- [electron-packager-tutorial](https://www.christianengvall.se/electron-packager-tutorial/)
