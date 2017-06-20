@@ -384,6 +384,22 @@ $ npm run package-mac		// 打包Mac
 
 顺便提一下，指定特定平台时，icon图片，可以跟平台相关，后缀分别是：``.ico``，``.png``和``.icns``。
 
+## installer 包制作
+
+刚才的打包，还仅仅是打包成了可执行文件，但是并不能一键安装，而是带着目录的绿色软件。
+
+- mac installer
+
+```
+$ npm run installer-mac
+```
+
+前提是先执行上面的``package``操作：``npm run package-mac``
+
+**详细安装包制作**
+
+> 请参考: [installer-made.md](installer-made.md)
+
 ## jquery-electron
 
 通常在前端使用jquery的时候，这么引用：
@@ -451,3 +467,5 @@ $ git checkout 230a72cac9104364
 - [electron-packager API](https://github.com/electron-userland/electron-packager/blob/master/docs/api.md)
 
 - [electron-packager-tutorial](https://www.christianengvall.se/electron-packager-tutorial/)
+
+- [mac installer DMG](https://www.christianengvall.se/dmg-installer-electron-app/)
